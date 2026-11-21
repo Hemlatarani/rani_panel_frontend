@@ -33,6 +33,10 @@ export default function ViewProduct() {
       )
       .then((res) => res.data)
       .then((finalRes) => {
+          console.log(" hemlataAPI RESPONSE:", finalRes);
+  console.log(" hemlata PRODUCTS:", finalRes.productCollection);
+  console.log("Hemlata STATIC PATH:", finalRes.staticPath);
+
         setproductData(finalRes.productCollection || []);
         setstaticpath(finalRes.staticPath || "");
         settotalPages(finalRes.totalpages)

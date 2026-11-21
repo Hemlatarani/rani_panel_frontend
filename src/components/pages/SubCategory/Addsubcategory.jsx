@@ -119,7 +119,9 @@ console.log(finalRes.subcategoryData)
           })
 
           let apiimageurl = import.meta.env.VITE_APIIMAGEURL
-          setImage(`${apiimageurl}/uploads/subcategory/${finalRes.subcategoryData.subcategoryImage}?v=${Date.now()}`)
+          // setImage(`${apiimageurl}/uploads/subcategory/${finalRes.subcategoryData.subcategoryImage}?v=${Date.now()}`)
+        
+          setImage(finalRes.subcategoryData.subcategoryImage)
         })
     }
 
@@ -178,6 +180,8 @@ console.log(finalRes.subcategoryData)
                 <select
                   name="parentCategory"
                   // value={}
+                      value={formValues.parentCategory}
+
                   onChange={getValueSetvalue}
                   className="border-1 w-[95%] rounded-md bg-gray-200"
                   style={{ display: "block", margin: "10px 20px", padding: "5px" }}

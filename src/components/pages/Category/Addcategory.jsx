@@ -214,7 +214,8 @@ export default function Addcategory() {
                   className="border-1 w-[95%] rounded-md block my-2 mx-5 p-2"
                   type="number"
                   placeholder="Order"
-                />
+                  />
+              
 
               </div>
 

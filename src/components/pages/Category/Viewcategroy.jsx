@@ -25,7 +25,7 @@ export default function Viewcategory() {
   let apibaseurl = import.meta.env.VITE_APIBASEURL;
   let imageurl = import.meta.env.VITE_APIIMAGEURL;
 
-  console.log("===================> rani",imageurl)
+  console.log("===================> rani", imageurl)
 
 
   let getcategory = () => {
@@ -178,16 +178,16 @@ export default function Viewcategory() {
                           onError={(e) => console.log("Image Load Error:", e.target.src)}
                         />
                       </td> */}
-                      
-                      
-<td className="p-3 border border-gray-300">
-  <img
-    src={`${imageurl.replace(/\/+$/, '')}/uploads/category/${categoryObj.categoryImage}`}
-    className="w-12 h-12 rounded object-cover"
-    alt={categoryObj.categoryName || "Category"}
-    onError={(e) => console.log("Image Load Error:", e.target.src)}
-  />
-</td>
+
+
+                      <td className="p-3 border border-gray-300">
+                        <img
+                          src={categoryObj.categoryImage}
+                          className="w-12 h-12 rounded object-cover"
+                          alt={categoryObj.categoryName || "Category"}
+                          onError={(e) => console.log("Image Load Error:", e.target.src)}
+                        />
+                      </td>
 
 
 
