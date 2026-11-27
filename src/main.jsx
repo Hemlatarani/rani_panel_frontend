@@ -52,7 +52,7 @@ createRoot(document.getElementById('root')).render(
     <StrictMode>
       <BrowserRouter>
         <Routes>
-           <Route path='/login' element={<Login/>}/>
+           <Route path='/' element={<Login/>}/>
           <Route element={<Layout />}>
            
             <Route path='/dashboard' element={<Dashboard />} />
