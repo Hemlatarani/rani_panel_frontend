@@ -150,12 +150,18 @@ let changeStatus=()=>{
 
             {/* Image */}
             <div>
+              {/* {console.log("Obj.subsubcategoryImage", Obj.subsubcategoryImage)} */}
               {Obj.subsubcategoryImage ? (
                 <img
-                  src={staticpath + Obj.subsubcategoryImage}
-                  className="h-10 w-10 rounded"
-                  alt={Obj.subsubcategoryName}
-                />
+                
+                  src={
+                        Obj?.subsubcategoryImage?.startsWith("https://")
+                          ? Obj.subsubcategoryImage
+                          : (`${staticpath}${encodeURIComponent(Obj?.subsubcategoryImage || "")}`)
+}
+
+                      className="h-10 w-10 object-cover"
+                      alt={Obj?.subsubcategoryName || "Subsubcategory"}                />
               ) : (
                 <span>-</span>
               )}

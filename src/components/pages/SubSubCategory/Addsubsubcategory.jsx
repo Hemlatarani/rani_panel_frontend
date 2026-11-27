@@ -22,6 +22,8 @@ export default function Addsubsubcategory() {
     subsubcategoryOrder: "",
   })
   let getValueSetvalue = (e) => {
+
+    console.log("e", e.target.name, e.target.value)
     let obj = { ...formValues }
     let inputname = e.target.name
     let inputValue = e.target.value
@@ -60,8 +62,9 @@ export default function Addsubsubcategory() {
       //update
       axios.put(`${apibaseurl}/subsubcategory/update/${id}`, formValues)
         .then((res) => res.data)
+        
         .then((finalres) => {
-          if (finalres.status == 1) {
+        if (finalres.status == 1) {
             // console.log("final", finalres.data)
             toast.success(finalres.msg)
             formValues.subsubcategoryImage = e.target.subsubcategoryImage.value
@@ -87,20 +90,20 @@ export default function Addsubsubcategory() {
         .then((res) => res.data)
         .then((finalRes) => {
           if (finalRes.status == 1) {
-            console.log("response",finalRes)
-            toast.success(finalRes.msg)
+         toast.success(finalRes.msg)
             setformValues({
               subsubcategoryName: "",
               subsubcategoryOrder: "",
               subsubcategoryImage: "",
-
+              
             })
+      
             setTimeout(() => {
               navigate("/subsubcategory/viewsubsubcategory")
-            }, 2000);
+            }, 1000);
           }
           else {
-            toast.error(finalRes.error)
+            toast.error(finalRes.error || finalRes.msg || "Already exist")
           }// console.log(finalRes)
         })
     }
@@ -133,7 +136,8 @@ export default function Addsubsubcategory() {
           })
 
           let apiimageurl = import.meta.env.VITE_APIIMAGEURL
-          setImage(`${apiimageurl}/uploads/subsubcategory/${finalRes.subsubcategoryData.subsubcategoryImage}?v==${Date.now}`)
+          // setImage(`${apiimageurl}/uploads/subsubcategory/${finalRes.subsubcategoryData.subsubcategoryImage}?v==${Date.now}`)
+        setImage(finalRes.subsubcategoryData.subsubcategoryImage)
         })
 
 

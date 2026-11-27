@@ -24,7 +24,8 @@ export default function Addsubcategory() {
 
   // handle text/select inputs
   let getValueSetvalue = (e) => {
-    setformValues(prev => ({...prev,
+    setformValues(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
     }))
   }
@@ -35,15 +36,15 @@ export default function Addsubcategory() {
       .then((res) => res.data)
       .then((finalRes) => {
         setparentData(finalRes.categoryData)
-        console.log("parent=>",finalRes.categoryData)
+        console.log("parent=>", finalRes.categoryData)
       })
   }
 
   // submit form
   let SavesbuCategory = (e) => {
     e.preventDefault()
-// console.log("form submit")
-  // console.log("Form Values:", formValues)   // 👈 ye lagao
+    // console.log("form submit")
+    console.log("Form Values:", formValues)   // 👈 ye lagao
 
     let formData = new FormData()
     formData.append("parentCategory", formValues.parentCategory)
@@ -54,7 +55,7 @@ export default function Addsubcategory() {
     if (formValues.subcategoryImage) {
       formData.append("subcategoryImage", formValues.subcategoryImage)
     }
-      // console.log("API URL:", `${apibaseurl}/subcategory/create`) // 👈 ye bhi lagao
+    // console.log("API URL:", `${apibaseurl}/subcategory/create`) // 👈 ye bhi lagao
 
     if (id) {
       // UPDATE
@@ -75,10 +76,15 @@ export default function Addsubcategory() {
     }
     else {
       // CREATE
+      console.log("FormData:");
+
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
       axios.post(`${apibaseurl}/subcategory/create`, formData)
         .then((res) => res.data)
         .then((finalres) => {
-          console.log("api response",finalres)
+          console.log("api response", finalres)
           if (finalres.status == 1) {
             toast.success(finalres.msg)
 
@@ -110,7 +116,7 @@ export default function Addsubcategory() {
       axios.get(`${apibaseurl}/subcategory/edit-subcategory/${id}`)
         .then((res) => res.data)
         .then((finalRes) => {
-console.log(finalRes.subcategoryData)
+          console.log(finalRes.subcategoryData)
           setformValues({
             parentCategory: finalRes.subcategoryData.parentCategory,
             subcategoryName: finalRes.subcategoryData.subcategoryName,
@@ -120,7 +126,7 @@ console.log(finalRes.subcategoryData)
 
           let apiimageurl = import.meta.env.VITE_APIIMAGEURL
           // setImage(`${apiimageurl}/uploads/subcategory/${finalRes.subcategoryData.subcategoryImage}?v=${Date.now()}`)
-        
+
           setImage(finalRes.subcategoryData.subcategoryImage)
         })
     }
@@ -180,7 +186,7 @@ console.log(finalRes.subcategoryData)
                 <select
                   name="parentCategory"
                   // value={}
-                      value={formValues.parentCategory}
+                  value={formValues.parentCategory}
 
                   onChange={getValueSetvalue}
                   className="border-1 w-[95%] rounded-md bg-gray-200"
@@ -190,7 +196,7 @@ console.log(finalRes.subcategoryData)
 
                   {parentData.map((Obj, index) => (
                     <option key={index}
-                     selected={formValues.parentCategory==Obj._id}
+                      selected={formValues.parentCategory == Obj._id}
                       value={Obj._id}>
                       {Obj.categoryName}
                     </option>
